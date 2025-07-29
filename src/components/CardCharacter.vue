@@ -2,26 +2,24 @@
   <div class="character">
     <img :src="character.image" :alt="character.name" />
     <div class="character__info">
-      <h3 class="character__info">{{ character.name }}</h3>
-
+      <h2>{{ character.name }}</h2>
       <div class="status">
         <span
-          :class="{
-            alive: character.status === 'Alive',
-            dead: character.status === 'Dead',
-            default:
-              character.status !== 'Alive' && character.status !== 'Dead',
+          class="dot"
+          :style="{
+            backgroundColor:
+              character.status === 'Alive'
+                ? 'green'
+                : character.status === 'Dead'
+                ? 'red'
+                : 'gray',
           }"
         ></span>
+
         <span>{{ character.status }} - {{ character.species }}</span>
       </div>
-      <div class="origin">
-        <span> Origin: {{ character.origin.name }} </span>
-      </div>
-      <div class="location">
-        Location:
-        {{ character.location.name }}
-      </div>
+      <p><strong>Origin:</strong> {{ character.origin.name }}</p>
+      <p><strong>Location:</strong> {{ character.location.name }}</p>
     </div>
   </div>
 </template>
@@ -34,15 +32,16 @@ export default {
 
 <style scoped lang="scss">
 .character {
+  width: 280px;
+  height: 460px; // altura uniforme para todos
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  transition: transform 0.2s;
-  cursor: pointer;
+  border: 1px solid #e5e7eb; // gris claro tipo Tailwind
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
     transform: translateY(-4px);
@@ -50,49 +49,42 @@ export default {
 
   img {
     width: 100%;
-    height: auto;
+    height: 250px;
     object-fit: cover;
   }
 
   .character__info {
-    padding: 1rem;
+    flex: 1;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.4rem;
 
-    h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.2rem;
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.3;
     }
 
     .status {
       display: flex;
       align-items: center;
-      margin-bottom: 0.5rem;
+      gap: 0.4rem;
+      font-size: 0.9rem;
 
-      span:first-child {
+      .dot {
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        display: inline-block;
-        margin-right: 8px;
+        background-color: red; // verde
       }
-
-      .alive {
-        background-color: #28a745;
-      }
-
-      .dead {
-        background-color: #dc3545;
-      }
-
-      .default {
-        background-color: #6c757d;
-      }
-    }
-
-    .origin,
-    .location {
-      font-size: 0.9rem;
-      color: #333;
-      margin-top: 4px;
     }
   }
 }

@@ -39,9 +39,15 @@ export default {
 
 <style lang="scss" scoped>
 .characters {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
   padding: 2rem;
+}
+
+.characters__item {
+  height: 100%;
+  display: flex;
 }
 </style>
