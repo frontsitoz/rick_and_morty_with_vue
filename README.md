@@ -17,3 +17,4 @@ yarn build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+# rick_and_morty_with_vue
